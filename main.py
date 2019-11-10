@@ -13,8 +13,8 @@ class Application():
     def __init__(self):
         # Some params
         self.config = configuration()
-        self.photos_path = config['capture']['photo_path']
-        self.liveview_path = config['capture']['live_photo_path']
+        self.photos_path = self.config['capture']['photo_path']
+        self.liveview_path = self.config['capture']['live_photo_path']
 
         # Check if camera connected
         print('Looking for a camera.')
