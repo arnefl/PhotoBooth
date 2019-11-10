@@ -15,7 +15,7 @@ A simple photobooth app.
     conda activate photobooth
     pip install -v gphoto2
 ```
-4. Update email and tite in???
+4. Update `config.yml`.
 5. Update shebang in main.py to your python path
 6. Give more priveliges to main.py.
 ```
