@@ -12,7 +12,7 @@ from app.SystemProcess import ProcessKillAndWait, CheckIfProcessExists
 class Application():
     def __init__(self):
         # Some params
-        config = configuration()
+        self.config = configuration()
         self.photos_path = config['capture']['photo_path']
         self.liveview_path = config['capture']['live_photo_path']
 
@@ -43,7 +43,7 @@ class Application():
 
 
     def start_GUI(self):
-        self.gui = PhotoBoothGUI(self.sony, config)
+        self.gui = PhotoBoothGUI(self.sony, self.config)
         self.gui.root.mainloop()
 
         # Try to close connection
