@@ -6,6 +6,9 @@ A simple photobooth app.
 
 1. Install miniconda or anaconda
 2. Install libghoto2 from source
+```
+    brew install libgphoto2
+```
 3. Create new conda environment and install some packages
 ```
     conda create --name photobooth python=3.7 pillow pyyaml
