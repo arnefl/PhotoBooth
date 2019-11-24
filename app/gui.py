@@ -188,8 +188,10 @@ class PhotoBoothGUI():
                                          image=self.mailphoto,
                                          bg='black')
         self.RootProcessPhotoMail.bind('<Button-1>', self._process_new_photo_mail)
-
-
+        
+        # Clear event queue
+        self.camera._clear_event_queue()
+        
     def _process_new_photo_cancel(self, event=None):
         # Delete the two buttons
         self.RootProcessPhotoFrame.destroy()

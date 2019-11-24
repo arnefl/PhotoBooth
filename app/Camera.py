@@ -41,9 +41,6 @@ class CameraConnection():
         # Get photo
         gp.check_result(gp.gp_file_save(camera_file, target))
         
-        # Clear event queue
-        self._clear_event_queue
-        
         return(target)
 
     def _photo_namer(self):
