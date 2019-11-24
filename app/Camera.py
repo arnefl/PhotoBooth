@@ -18,8 +18,8 @@ class CameraConnection():
         
     def _clear_event_queue(self):
         while True:
-            type_, data = self.camera.wait_for_event(10)
-            if type == gp.GP_EVENT_TIMEOUT:
+            type_, _ = self.camera.wait_for_event(10)
+            if type_ == gp.GP_EVENT_TIMEOUT:
                 return
 
     def _capture_preview(self):
@@ -40,6 +40,9 @@ class CameraConnection():
         
         # Get photo
         gp.check_result(gp.gp_file_save(camera_file, target))
+        
+        # Clear event queue
+        self._clear_event_queue()
         
         return(target)
 
