@@ -15,7 +15,12 @@ class CameraConnection():
         # Some params
         self.preview_path = liveview_path
         self.photos_path = photos_path
-
+        
+    def _clear_event_queue(self):
+        while True:
+            type_, data = self.camera.wait_for_event(10)
+            if type == gp.GP_EVENT_TIMEOUT:
+                return
 
     def _capture_preview(self):
         preview = gp.check_result(gp.gp_camera_capture_preview(self.camera, self.context))
@@ -32,9 +37,13 @@ class CameraConnection():
         camera_file = gp.check_result(gp.gp_camera_file_get(
                 self.camera, file_path.folder, file_path.name,
                 gp.GP_FILE_TYPE_NORMAL, self.context))
-
+        
+        # Get photo
         gp.check_result(gp.gp_file_save(camera_file, target))
-
+        
+        # Clear event queue
+        self._clear_event_queue
+        
         return(target)
 
     def _photo_namer(self):
