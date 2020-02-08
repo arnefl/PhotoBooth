@@ -1,4 +1,4 @@
-#!/Users/wedding/opt/miniconda3/envs/photobooth/bin/python
+#!/opt/miniconda3/envs/photobooth/bin/python
 
 import os
 import time

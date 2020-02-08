@@ -1,0 +1,12 @@
+capture:
+    photo_path: 'photos/'
+    live_photo_path: 'preview.jpg'
+gui:
+    title: "Photo booth"
+email:
+    user: '@.com'
+    password: ''
+    smtp_server: 'smtp.gmail.com'
+    smtp_port: 587
+    subject: 'Photo from photobooth'
+    text: 'Thanks for trying out the photo booth!'
