@@ -223,11 +223,11 @@ class PhotoBoothGUI():
             # Make a small version of image (6000 × 4000)
             size = (1500, 1000)
             NewImagePath = self.MailPhotoTarget.replace('.jpg', '_mail.jpg')
+            NewImagePath = NewImagePath.replace('photos', 'photos_email')
             img = Image.open(self.MailPhotoTarget)
             img = img.convert('RGB')
             img = img.resize(size, Image.ANTIALIAS)
             img.save(NewImagePath)
-
 
             # Send it!
             SendEMail(email,
