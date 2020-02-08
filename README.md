@@ -11,7 +11,7 @@ A simple photobooth app.
 ```
 3. Create new conda environment and install some packages
 ```
-    conda create --name photobooth python=3.7 pillow pyyaml
+    conda create --name photobooth python=3.7 pillow pyyaml pip
     conda activate photobooth
     pip install -v gphoto2
 ```
