@@ -69,6 +69,7 @@ class PhotoBoothGUI():
         ##############################
         # Prepare the live view label
         self.scaleFactor = 0.8
+        self.cropFactorX = 0.2
         self.RootLiveViewPanelWidth = int(1024/self.scaleFactor)
         self.RootLiveViewPanelHeight = int(680/self.scaleFactor)
 
@@ -102,10 +103,26 @@ class PhotoBoothGUI():
     def _set_root_photo(self, photo):
         self.img = Image.open(photo)
         self.img = self.img.transpose(Image.FLIP_LEFT_RIGHT)
-        self.img = self.img.resize((self.RootLiveViewPanelWidth,self.RootLiveViewPanelHeight), Image.ANTIALIAS)
+        self.img = self.img.resize((self.RootLiveViewPanelWidth,
+                                    self.RootLiveViewPanelHeight),
+                                   Image.ANTIALIAS)
+
+        if self.cropFactorX != 0:
+            self.img = self._crop_photo(self.img)
+
         self.img = ImageTk.PhotoImage(self.img)
         self.RootLiveViewPanel.configure(image=self.img)
         self.RootLiveViewPanel.image = self.img
+
+    def _crop_photo(self, PilImage):
+        """
+        Horizontal crop
+        """
+        w, h = PilImage.size
+        w0 = 0.5 * self.cropFactorX * w
+        w1 = w - w0
+
+        return PilImage.crop((w0, 0, w1, h))
 
     def _capture_photo(self, event=None):
         # Count to three
@@ -227,6 +244,7 @@ class PhotoBoothGUI():
             img = Image.open(self.MailPhotoTarget)
             img = img.convert('RGB')
             img = img.resize(size, Image.ANTIALIAS)
+            img = self._crop_photo(img)
             img.save(NewImagePath)
 
             # Send it!
