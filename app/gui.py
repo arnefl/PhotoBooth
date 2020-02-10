@@ -15,11 +15,11 @@ class PhotoBoothGUI():
     def __init__(self, camera, config):
         self.ErrorState = False
         self.config = config
-        
+
         # Init tk root
         self.root = tk.Tk()
         self.root.title("Photobooth")
-        self.root.geometry("1000x900+0+0") # width x height +x +y
+        self.root.geometry("1920x1080+0+0") # width x height +x +y
         self.root.configure(background='black')
         self.root.resizable(0,0)
 
@@ -40,8 +40,8 @@ class PhotoBoothGUI():
         ############################
         # Heading
         self.RootHeading = tk.Label(self.root, text="Photo booth")
-        self.RootHeading.grid(row=0, column=1)
-        self.RootHeading.config(height=2,
+        self.RootHeading.grid(row=0, column=1, ipady=10)
+        self.RootHeading.config(height=0,
                            bg="black",
                            font=("Stylish Calligraphy Demo", 80),
                            foreground="white")
@@ -68,7 +68,7 @@ class PhotoBoothGUI():
 
         ##############################
         # Prepare the live view label
-        self.scaleFactor = 1.2
+        self.scaleFactor = 0.8
         self.RootLiveViewPanelWidth = int(1024/self.scaleFactor)
         self.RootLiveViewPanelHeight = int(680/self.scaleFactor)
 
@@ -94,7 +94,7 @@ class PhotoBoothGUI():
             self._set_root_photo(self.camera.preview_path)
 
             # Repeat in n milliseconds
-            self._live_view_job = self.root.after(80, self._updateLiveView) # Run function in mainloop every n milliseconds
+            self._live_view_job = self.root.after(80, self._updateLiveView)
         except:
             self.ErrorState = True
             self.root.quit()
@@ -188,7 +188,7 @@ class PhotoBoothGUI():
                                          image=self.mailphoto,
                                          bg='black')
         self.RootProcessPhotoMail.bind('<Button-1>', self._process_new_photo_mail)
-        
+
     def _process_new_photo_cancel(self, event=None):
         # Delete the two buttons
         self.RootProcessPhotoFrame.destroy()
